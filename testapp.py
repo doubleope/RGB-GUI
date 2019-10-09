@@ -8,7 +8,7 @@ influx_db = InfluxDB(app=app)
 
 @app.route('/')
 def index():
-    return "Hello"
+    return render_template('index.html', )
 
 
 @app.route('/newdb/<dbname>')
