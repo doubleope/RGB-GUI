@@ -11,14 +11,4 @@ def index():
     return render_template('index.html', )
 
 
-@app.route('/newdb/<dbname>')
-def newdb(dbname):
-    dbcon = influx_db.connection
-    dbcon.create_database(dbname)
-    return 'created'
-
-
-
-
-
 app.run()
