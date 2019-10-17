@@ -11,8 +11,8 @@ def index():
     return render_template('index.html', )
 
 
-@app.route('/L1')
+@app.route('/level1')
 def level1():
-    return render_template('l1.html')
+    return render_template('level1.html')
 
 app.run()
