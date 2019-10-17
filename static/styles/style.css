@@ -2,6 +2,10 @@
     background-color: #aec9da;
 }
 
+h1 {
+    text-align: center;
+}
+
 .btn-circle{ 
             width: 70px;
             height: 70px;
@@ -10,3 +14,8 @@
             font-size: 12px;
             text-align: center;
         }
+
+
+.main {
+    margin-top: 5em;
+}
