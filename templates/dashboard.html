@@ -8,15 +8,20 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
     <title>RGB</title>
-
+    <script type="text/javascript"
+    src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js">
+    </script>
+    <script type="text/javascript">
+    var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
 
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/dashboard.css') }}">
 
-    <link href="/home/ope/Documents/WebProjects/ShoppingWebsite/public/stylesheets/fontawesome-free-5.9.0-web/css/all.css" rel="stylesheet" />
-    <link href="font-awesome-5.3.1/css/v4-shims.min.css" rel="stylesheet" />
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/fontawesome-free-5.9.0-web/css/all.css') }}">
+    <!-- <link href="/home/ope/Documents/WebProjects/ShoppingWebsite/public/stylesheets/fontawesome-free-5.9.0-web/css/all.css" rel="stylesheet"> -->
+
 
     <style>
       .bd-placeholder-img {
@@ -35,9 +40,27 @@
       }
     </style>
 
-    <link href="dashboard.css" rel="stylesheet">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/dashboard.css') }}">
+    <!-- <link rel = "stylesheet" type = "text/css" href = "dashboard.css"> -->
   </head>
-  <body>
+  <script type="text/javascript">
+  var intervalID = setInterval(update_values, 100);
+
+    function update_values(){
+      $.getJSON($SCRIPT_ROOT + '/getInfo',
+      function(data) {
+        $('#result').text(data.result);
+        console.log(data)
+      });
+    };
+    function stopTextColor() {
+      clearInterval(intervalID);
+    }
+
+    </script>
+
+
+  <body onload = "update_values();">
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">RGB</a>
   
@@ -107,8 +130,8 @@
           <h1 id = "heading" class="h2">Dashboard</h1>
       </div>
       <div class = "row content">
-        <div class = "col-lg-10 d-flex align-items-start">
-          <div class = "col-lg-6">
+        <div class = "col-lg-11 d-flex align-items-start">
+          <div class = "col-lg-4 ">
             <form>
               <div class="form-group">
                 <label for="exampleInputEmail1">Enter Cluster ID</label>
@@ -126,7 +149,7 @@
           </div>
           
           <div class = "col-lg-6">
-              <div class = "card results">Results will be displayed here
+              <div id = "result" class = "card">Results will be displayed here
               </div>
           </div>
           
@@ -142,7 +165,9 @@
   </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-      <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+<script>
+    document.getElementById("result").innerHTML;
+    </script>   
 
 </body>
 </html>
