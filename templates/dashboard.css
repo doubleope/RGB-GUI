@@ -91,3 +91,13 @@ main {
 .container-fluid {
   
 }
+
+.content {
+  margin-left: 230px;
+  color: white;
+}
+
+#heading {
+  margin-left: 230px;
+  color: white;
+}
