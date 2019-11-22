@@ -44,7 +44,7 @@
   </script>
 
   <script type="text/javascript">
-    var intervalID = setInterval(update_values,1000);
+    
 
       function update_values() {
             $.getJSON($SCRIPT_ROOT + '/getInfo',
@@ -57,10 +57,7 @@
         };
       
         
-        
-        function stopTextColor() {
-          clearInterval(intervalID);
-        }
+       
         
   </script>
 
@@ -157,6 +154,8 @@
           </div>
           
           <div class = "col-lg-6">
+              <button onclick="update_values();">Start</button>
+             
               <div id = "result" class = "card">Results will be displayed here
               </div>
           </div>
