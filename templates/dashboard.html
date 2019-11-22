@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
+
   <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
    
@@ -12,12 +14,13 @@
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/fontawesome-free-5.9.0-web/css/all.css') }}">
 
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/dashboard.css') }}">
+      
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-  <script type="text/javascript">
-    var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-  </script>
+    <script type="text/javascript">
+      var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
 
-  <script type="text/javascript" src = " {{url_for('static', filename='scripts/script.js') }}"></script>
+    <script type="text/javascript" src = " {{url_for('static', filename='scripts/script.js') }}"></script>
 
   </head>
 
@@ -25,110 +28,108 @@
 
   <body>
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">RGB</a>
-  
-
-</nav>
-
-<div class="container-fluid">
-  <div class="row">
-    <nav class="col-md-2 d-none d-md-block sidebar">
-      <div class="sidebar-sticky">
-        
-
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-          <span>RGB-Standard</span>
-         
-        </h6>
-        <ul class="nav flex-column mb-2">
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-            <i class="fas fa-angle-double-right"></i>
-              Level One
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-angle-double-right"></i>
-                Level Two
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-angle-double-right"></i>
-                Level Three
-            </a>
-          </li>
-        </ul>
-
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-            <span>RGB-Telemetry</span>
-           
-          </h6>
-          <ul class="nav flex-column mb-2">
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-              <i class="fas fa-angle-double-right"></i>
-                Level One
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                  <i class="fas fa-angle-double-right"></i>
-                  Level Two
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                  <i class="fas fa-angle-double-right"></i>
-                  Level Three
-              </a>
-            </li>
-          </ul>
-      </div>
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">RGB</a>
     </nav>
 
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-12">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 id = "heading" class="h2">Dashboard</h1>
-      </div>
-      <div class = "row content">
-        <div class = "col-lg-11 d-flex align-items-start">
-          <div class = "col-lg-4 ">
-            <form>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Enter Cluster ID</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Cluster ID">
-                <small id="emailHelp" class="form-text text-muted"></small>
-              </div>
-              <div class="form-group">
-                  <label for="exampleInputEmail1">Enter Node ID</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Node ID">
-                  <small id="emailHelp" class="form-text text-muted"></small>
-                </div>
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block sidebar">
+          <div class="sidebar-sticky">
+            
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>RGB-Standard</span>
+            
+            </h6>
+            <ul class="nav flex-column mb-2">
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                <i class="fas fa-angle-double-right"></i>
+                  Level One
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-angle-double-right"></i>
+                    Level Two
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-angle-double-right"></i>
+                    Level Three
+                </a>
+              </li>
+            </ul>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                <span>RGB-Telemetry</span>
               
-              <button type="submit" class="btn btn-primary">Run</button>
-            </form>
+              </h6>
+              <ul class="nav flex-column mb-2">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                  <i class="fas fa-angle-double-right"></i>
+                    Level One
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fas fa-angle-double-right"></i>
+                      Level Two
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fas fa-angle-double-right"></i>
+                      Level Three
+                  </a>
+                </li>
+              </ul>
           </div>
-          
-          <div class = "col-lg-6">
-              <button onclick="update_values();">Start</button>
-             
-              <div id = "result" class = "card">Results will be displayed here
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-12">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+              <h1 id = "heading" class="h2">Dashboard</h1>
+          </div>
+          <div class = "row content">
+            <div class = "col-lg-11 d-flex align-items-start">
+              <div class = "col-lg-4 ">
+                <form>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Enter Cluster ID</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Cluster ID">
+                    <small id="emailHelp" class="form-text text-muted"></small>
+                  </div>
+                  <div class="form-group">
+                      <label for="exampleInputEmail1">Enter Node ID</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Node ID">
+                      <small id="emailHelp" class="form-text text-muted"></small>
+                    </div>
+                  
+                  <button type="submit" class="btn btn-primary">Run</button>
+                </form>
               </div>
+              
+              <div class = "col-lg-6">
+                  <button onclick="update_values();">Start</button>
+                
+                  <div id = "result" class = "card">Results will be displayed here
+                  </div>
+              </div>
+              
+
+
+            </div>
           </div>
+
           
 
-
-        </div>
+          
+        </main>
       </div>
-
-      
-
-      
-    </main>
-  </div>
-</div>
-</body>
+    </div>
+  </body>
 </html>
 
