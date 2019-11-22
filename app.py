@@ -1,21 +1,24 @@
-import time
+
 
 from flask_influxdb import InfluxDB
 from flask import Flask, render_template, jsonify, request
 import webbrowser
+import time
+
 
 app = Flask(__name__)
 
 influx_db = InfluxDB(app=app)
 
+@app.route('/getInfo', methods = ['GET'])
+def getInfo():
+    return jsonify(result=time.time())
 
 @app.route('/')
 def index():
     return render_template('dashboard.html', )
 
-@app.route('/getInfo', methods = ['GET'])
-def getInfo():
-    return jsonify(result=time.time())
+
 
 @app.route('/level1')
 def level1():
@@ -29,4 +32,6 @@ def level2():
 def level3():
     return render_template('level3.html')
 
-app.run()
+
+if __name__ == '__main__':
+    app.run()
