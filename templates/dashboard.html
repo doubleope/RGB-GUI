@@ -12,29 +12,11 @@
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/fontawesome-free-5.9.0-web/css/all.css') }}">
 
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/dashboard.css') }}">
-    <script type="text/javascript"
-    src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script type="text/javascript">
     var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
   </script>
 
-  <script type="text/javascript">
-    
-
-      function update_values() {
-            $.getJSON($SCRIPT_ROOT + '/getInfo',
-                  
-          function(data) {
-            $('#result').text(data.result);
-            console.log(data)
-          });
-          
-        };
-      
-        
-       
-        
-  </script>
 
   </head>
 
@@ -146,10 +128,6 @@
     </main>
   </div>
 </div>
-
-<script>
-  document.getElementById("result").innerHTML;
-  </script>
 
 </body>
 </html>
