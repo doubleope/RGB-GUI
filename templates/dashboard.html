@@ -20,8 +20,9 @@
       var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
     </script>
 
-    <script type="text/javascript" src = " {{url_for('static', filename='scripts/script.js') }}"></script>
+    <!-- <script type="text/javascript" src = " {{url_for('static', filename='scripts/script.js') }}"></script> -->
 
+    <script type="text/javascript" src = " {{url_for('static', filename='scripts/testScript.js') }}"></script>
   </head>
 
 
@@ -90,6 +91,7 @@
         </nav>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-12">
+
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
               <h1 id = "heading" class="h2">Dashboard</h1>
           </div>
@@ -108,28 +110,31 @@
                       <small id="emailHelp" class="form-text text-muted"></small>
                     </div>
                   
-                  <button type="submit" class="btn btn-primary">Run</button>
+                  <a href = # id = process><button type="submit" class="btn btn-primary">Run</button></a>
                 </form>
               </div>
               
               <div class = "col-lg-6">
-                  <button onclick="update_values();">Start</button>
+            
                 
                   <div id = "result" class = "card">Results will be displayed here
                   </div>
               </div>
-              
-
-
             </div>
+
           </div>
 
-          
 
-          
         </main>
+
+
       </div>
+
     </div>
+
+
   </body>
+
+
 </html>
 
