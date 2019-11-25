@@ -20,3 +20,8 @@ client.write_points([
 ])
 
 dbData = client.query('SELECT * FROM testseries')
+
+data_points = []
+for measurement, tags in dbData.keys():
+    for p in dbData.get_points(measurement=measurement, tags=tags):
+        data_points.append(p)
