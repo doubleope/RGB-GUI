@@ -103,5 +103,10 @@ main {
 }
 
 #result {
+
   color: black;
+}
+
+pre {
+  margin-bottom: 0;
 }
