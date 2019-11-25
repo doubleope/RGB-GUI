@@ -14,12 +14,10 @@ influx_db = InfluxDB(app=app)
 def getInfo():
     client = influx_db.connection
     client.switch_database('rgb')
-    dbData = client.query('SELECT * FROM testseries')
-    newdbdata = dbData.raw
-
+    db_data = client.query('SELECT * FROM testseries')
     data_points = []
-    for measurement, tags in dbData.keys():
-        for p in dbData.get_points(measurement=measurement, tags=tags):
+    for measurement, tags in db_data.keys():
+        for p in db_data.get_points(measurement=measurement, tags=tags):
             data_points.append(p)
     return jsonify(data_points[0])
 
