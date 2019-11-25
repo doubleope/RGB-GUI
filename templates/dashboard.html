@@ -14,13 +14,15 @@
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/fontawesome-free-5.9.0-web/css/all.css') }}">
 
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/dashboard.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/highlight/styles/atelier-lakeside-dark.css') }}">
       
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
     <script type="text/javascript">
       var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
     </script>
 
-
+    <script type="text/javascript" src = " {{url_for('static', filename='styles/highlight/highlight.pack.js') }}"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 
     <script type="text/javascript" src = " {{url_for('static', filename='scripts/script.js') }}"></script>
   </head>
@@ -117,7 +119,7 @@
               <div class = "col-lg-6">
             
                 
-                  <div class = "card"><pre id = "result">Your results will be displayed here</pre>
+                  <div class = "card"><pre class = "json" id = "result">Your results will be displayed here</pre>
                   </div>
               </div>
             </div>
