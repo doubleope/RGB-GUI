@@ -83,13 +83,13 @@ body {
  
 }
 
+#logo {
+  padding: 5px;
+}
+
 main {
   background-color: #222d32;
   height: 100vh;
-}
-
-.container-fluid {
-  
 }
 
 .content {
