@@ -1,4 +1,4 @@
-
+import sys
 
 from flask_influxdb import InfluxDB
 from flask import Flask, render_template, jsonify, request
@@ -9,6 +9,31 @@ import time
 app = Flask(__name__)
 
 influx_db = InfluxDB(app=app)
+
+
+@app.route('/postClusterInfo')
+def postClusterInfo():
+    client = influx_db.connection
+    client.switch_database('cluster_info_db')
+    cluster_name = request.args.get('cluster_name')
+    cluster_type = request.args.get('cluster_type')
+    ip = request.args.get('ip')
+    port = request.args.get('port')
+    mac_address = request.args.get('mac_address')
+    client.write_points([
+        {
+            "fields": {
+                'cluster_name': cluster_name,
+                'cluster_type': cluster_type,
+                'ip': ip,
+                'port': port,
+                'mac_address': mac_address
+            },
+            "measurement": "clusters2"
+        }
+    ])
+
+
 
 @app.route('/getInfo', methods = ['GET'])
 def getInfo():
@@ -23,7 +48,7 @@ def getInfo():
 
 @app.route('/')
 def index():
-    return render_template('dashboard.html', )
+    return render_template('dash2.html', )
 
 
 

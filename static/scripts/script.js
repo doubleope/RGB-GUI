@@ -10,3 +10,18 @@ $(function() {
       return false;
     });
   });
+
+  $(function() {
+    $('a#save').bind('click', function() {
+    $.getJSON('/postClusterInfo', {
+      cluster_name: $('input[name="cluster_name"]').val(),
+      cluster_type: $('input[name="cluster_type"]').val(),
+      ip: $('input[name="ip"]').val(),
+      port: $('input[name="port"]').val(),
+      mac_address: $('input[name="mac_address"]').val()
+    }, function() {
+      return false
+    });
+    return false;
+    });
+  });

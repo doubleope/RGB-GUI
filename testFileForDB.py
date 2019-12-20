@@ -7,15 +7,13 @@ client.switch_database('rgb')
 client.write_points([
     {
         "fields": {
-            'value_1': 78,
-            'value_2': 98,
-            'value_3': 56
+            'cluster_name': 78,
+            'type': 98,
+            'ip': 56,
+            'port': 4543,
+            'mac_address': 338
         },
-        "tags": {
-            'cluster_id': '1',
-            'node_id': '12'
-        },
-        "measurement": "testseries"
+        "measurement": "clusters"
     }
 ])
 
