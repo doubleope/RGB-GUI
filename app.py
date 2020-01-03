@@ -15,19 +15,15 @@ influx_db = InfluxDB(app=app)
 def postClusterInfo():
     client = influx_db.connection
     client.switch_database('cluster_info_db')
-    cluster_name = request.args.get('cluster_name')
-    cluster_type = request.args.get('cluster_type')
-    ip = request.args.get('ip')
-    port = request.args.get('port')
-    mac_address = request.args.get('mac_address')
+
     client.write_points([
         {
             "fields": {
-                'cluster_name': cluster_name,
-                'cluster_type': cluster_type,
-                'ip': ip,
-                'port': port,
-                'mac_address': mac_address
+                'cluster_name': request.args.get('cluster_name'),
+                'cluster_type': request.args.get('cluster_type'),
+                'ip': request.args.get('ip'),
+                'port': request.args.get('port'),
+                'mac_address': request.args.get('mac_address')
             },
             "measurement": "clusters"
         }
