@@ -29,7 +29,7 @@ def postClusterInfo():
                 'port': port,
                 'mac_address': mac_address
             },
-            "measurement": "clusters2"
+            "measurement": "clusters"
         }
     ])
 
