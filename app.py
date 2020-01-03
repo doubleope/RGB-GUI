@@ -48,7 +48,7 @@ def getInfo():
 
 @app.route('/')
 def index():
-    return render_template('dash2.html', )
+    return render_template('home.html', )
 
 
 
