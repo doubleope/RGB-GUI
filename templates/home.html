@@ -16,7 +16,12 @@
 
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/highlight/styles/atelier-lakeside-dark.css') }}">
 
+    
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript">
+      var jQuery_1_4_2 = $.noConflict(true);
+    </script>
+
     <script type="text/javascript">
       var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
     </script>
@@ -121,8 +126,8 @@
                   <small id="mac" class="form-text text-muted"></small>
               </div>
 
-              <a href ="#" id = process><button type="submit" class="btn btn-primary">Add</button></a>
-              <a href ="#" id = process><button type="submit" class="btn btn-primary">Show The Data Center Information</button></a>
+              <a href ="#" id = save><button type="submit" class="btn btn-primary">Add</button></a>
+              <a href ="#" id = process ><button type="submit" class="btn btn-primary">Show The Data Center Information</button></a>
             </form>
           </div>
 
