@@ -1,7 +1,7 @@
 from influxdb import InfluxDBClient
 client = InfluxDBClient(host='localhost', port=8086)
 
-client.switch_database('rgb')
+client.switch_database('cluster_info_db')
 
 
 client.write_points([
@@ -17,7 +17,7 @@ client.write_points([
     }
 ])
 
-dbData = client.query('SELECT * FROM testseries')
+dbData = client.query('SELECT * FROM clusters')
 
 data_points = []
 for measurement, tags in dbData.keys():
@@ -26,7 +26,7 @@ for measurement, tags in dbData.keys():
 
 
 
-dbData_points = list(dbData.get_points(measurement = 'clusters'))
+dbData_points = list(dbData.get_points())
 final_points = []
 
 for i in dbData_points:
