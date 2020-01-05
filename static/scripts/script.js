@@ -4,10 +4,7 @@ j(function() {
   j('a#process').bind('click', function() {
     j.getJSON('/getInfo', function(data) {
         console.log(data);
-        j("#result").text(JSON.stringify(data, undefined, 10));
-        j(document).ready(function() {
-          j('#result').each(function(i, e) {hljs.highlightBlock(e)});
-       });
+        
       });
       return false;
     });
@@ -21,8 +18,11 @@ j(function() {
       ip: j('input[name="ip"]').val(),
       port: j('input[name="port"]').val(),
       mac_address: j('input[name="mac_address"]').val()
-    }, function() {
-      return false
+    }, function(data) {
+      j("#result").text(JSON.stringify(data, undefined, 10));
+        j(document).ready(function() {
+          j('#result').each(function(i, e) {hljs.highlightBlock(e)});
+       });
     });
     return false;
     });

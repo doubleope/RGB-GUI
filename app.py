@@ -29,6 +29,10 @@ def postClusterInfo():
         }
     ])
 
+    db_data = client.query('SELECT * FROM clusters')
+    data_points = list(db_data.get_points())
+    return jsonify(data_points)
+
 
 
 @app.route('/getInfo', methods = ['GET'])
