@@ -1,14 +1,25 @@
 var j = jQuery_1_4_2
 
+function displayClusterInfo(data){
+  j("#result").text(JSON.stringify(data, undefined, 10));
+        j(document).ready(function() {
+          j('#result').each(function(i, e) {hljs.highlightBlock(e)});
+       });
+}
+
+
 j(function() {
   j('a#process').bind('click', function() {
     j.getJSON('/getInfo', function(data) {
-        console.log(data);
-        
+        displayClusterInfo(data)
       });
       return false;
     });
   });
+
+
+
+
 
   j(function() {
     j('a#save').bind('click', function() {
@@ -19,10 +30,7 @@ j(function() {
       port: j('input[name="port"]').val(),
       mac_address: j('input[name="mac_address"]').val()
     }, function(data) {
-      j("#result").text(JSON.stringify(data, undefined, 10));
-        j(document).ready(function() {
-          j('#result').each(function(i, e) {hljs.highlightBlock(e)});
-       });
+      displayClusterInfo(data)
     });
     return false;
     });
