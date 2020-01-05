@@ -34,8 +34,8 @@ def postClusterInfo():
 @app.route('/getInfo', methods = ['GET'])
 def getInfo():
     client = influx_db.connection
-    client.switch_database('rgb')
-    db_data = client.query('SELECT * FROM testseries')
+    client.switch_database('cluster_info_db')
+    db_data = client.query('SELECT * FROM clusters')
     data_points = list(db_data.get_points())
     return jsonify(data_points)
 
