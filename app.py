@@ -37,7 +37,7 @@ def getInfo():
     client.switch_database('rgb')
     db_data = client.query('SELECT * FROM testseries')
     data_points = list(db_data.get_points())
-    return jsonify(data_points[0])
+    return jsonify(data_points)
 
 
 
