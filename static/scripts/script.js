@@ -19,19 +19,17 @@ j(function() {
 
 
 
-
-
-  j(function() {
-    j('a#save').bind('click', function() {
-      j.getJSON('/postClusterInfo', {
-      cluster_name: j('input[name="cluster_name"]').val(),
-      cluster_type: j('input[name="cluster_type"]').val(),
-      ip: j('input[name="ip"]').val(),
-      port: j('input[name="port"]').val(),
-      mac_address: j('input[name="mac_address"]').val()
-    }, function(data) {
-      displayClusterInfo(data)
-    });
-    return false;
-    });
+j(function() {
+  j('a#save').bind('click', function() {
+    j.getJSON('/postClusterInfo', {
+    cluster_name: j('input[name="cluster_name"]').val(),
+    cluster_type: j('input[name="cluster_type"]').val(),
+    ip: j('input[name="ip"]').val(),
+    port: j('input[name="port"]').val(),
+    mac_address: j('input[name="mac_address"]').val()
+  }, function(data) {
+    displayClusterInfo(data)
   });
+  return false;
+  });
+});
