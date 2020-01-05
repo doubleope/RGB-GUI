@@ -8,7 +8,7 @@ client.write_points([
     {
         "fields": {
             'cluster_name': 78,
-            'type': 98,
+            'cluster_type': 98,
             'ip': 56,
             'port': 4543,
             'mac_address': 338
