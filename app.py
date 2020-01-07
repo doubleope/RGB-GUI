@@ -5,6 +5,12 @@ from flask import Flask, render_template, jsonify, request
 import webbrowser
 import time
 
+import RGB_L1
+import RGB_L2
+import RGB_L3
+import RGB_Telemetry
+import RGB_Checker
+
 
 app = Flask(__name__)
 
@@ -42,6 +48,7 @@ def getInfo():
     db_data = client.query('SELECT * FROM clusters')
     data_points = list(db_data.get_points())
     return jsonify(data_points)
+
 
 
 
