@@ -50,6 +50,20 @@ def getInfo():
     return jsonify(data_points)
 
 
+@app.route('result1')
+def result1():
+    res1 = RGB_L1.runGreenTest(clusterInfoFile)
+    return jsonify(res1)
+
+@app.route('result2')
+def result1():
+    res2 = RGB_L2.runGreenTest(clusterInfoFile)
+    return jsonify(res2)
+
+@app.route('result1')
+def result1():
+    res2 = RGB_L3.runGreenTest(clusterInfoFile)
+    return jsonify(res2)
 
 
 @app.route('/')
