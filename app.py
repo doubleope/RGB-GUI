@@ -1,9 +1,8 @@
-import sys
+
 
 from flask_influxdb import InfluxDB
 from flask import Flask, render_template, jsonify, request
-import webbrowser
-import time
+
 
 import RGB_L1
 import RGB_L2
@@ -76,7 +75,7 @@ def result3():
 
 @app.route('/')
 def index():
-    return render_template('home.html', )
+    return render_template('home.html')
 
 
 @app.route('/level1')
