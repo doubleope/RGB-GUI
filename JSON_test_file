@@ -1,0 +1,26 @@
+[
+          {
+                    "cluster_name": "Node1",
+                    "cluster_type": "Head Node",
+                    "ip": "127.0.0.1",
+                    "mac_address": "00:1B:44:11:3A:B7",
+                    "port": "5000",
+                    "time": "2020-01-03T05:39:42.88922125Z"
+          },
+          {
+                    "cluster_name": "Node2",
+                    "cluster_type": "Tail Node",
+                    "ip": "64.97.35.900",
+                    "mac_address": "00:1A:C2:7B:00:41",
+                    "port": "3000",
+                    "time": "2020-01-03T06:06:58.248896636Z"
+          },
+          {
+                    "cluster_name": "Node3",
+                    "cluster_type": "Node",
+                    "ip": "216.3.128.12",
+                    "mac_address": "00-14-22-01-23-45",
+                    "port": "6000",
+                    "time": "2020-01-03T06:12:50.619188105Z"
+          }
+]

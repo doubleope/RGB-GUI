@@ -1,8 +1,9 @@
-
+import json
+import sys
 
 from flask_influxdb import InfluxDB
 from flask import Flask, render_template, jsonify, request
-
+from werkzeug.utils import secure_filename
 
 import RGB_L1
 import RGB_L2
@@ -19,6 +20,30 @@ def get_info(client):
     db_data = client.query('SELECT * FROM clusters')
     data_points = list(db_data.get_points())
     return data_points
+
+
+@app.route('/upload_file', methods=['GET', 'POST'])
+def upload_file():
+    client = influx_db.connection
+    client.switch_database('cluster_info_db')
+    if request.method == 'POST':
+        file = request.files['file']
+        with open('file') as json_file:
+            file = json.load(json_file)
+        for i in file:
+            client.write_points([
+                {
+                    "fields": {
+                        'cluster_name': file[i][0],
+                        'cluster_type': file[i][1],
+                        'ip': file[i][2],
+                        'port': file[i][3],
+                        'mac_address': file[i][4]
+                    },
+                    "measurement": "clusters"
+                }
+            ])
+
 
 
 @app.route('/post_cluster_info')
@@ -78,7 +103,7 @@ def index():
     return render_template('home.html')
 
 
-@app.route('/level1')
+@app.route('/level1', methods=['GET', 'POST'])
 def level1():
     level_type = "Level One"
     return render_template('measurement-results-page.html', level_type=level_type)
