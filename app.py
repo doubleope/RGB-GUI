@@ -17,10 +17,6 @@ influx_db = InfluxDB(app=app)
 
 
 def get_info(client):
-    if client is None:
-        client = influx_db.connection
-        client.switch_database('cluster_info_db')
-
     db_data = client.query('SELECT * FROM clusters')
     data_points = list(db_data.get_points())
     return data_points
@@ -56,20 +52,26 @@ def show_data_center_info():
 
 @app.route('/result1')
 def result1():
-    res1 = RGB_L1.runGreenTest(clusterInfoFile)
+    client = influx_db.connection
+    client.switch_database('cluster_info_db')
+    res1 = RGB_L1.runGreenTest(get_info(client))
     return jsonify(res1)
 
 
 @app.route('/result2')
 def result2():
-    res2 = RGB_L2.runGreenTest(clusterInfoFile)
+    client = influx_db.connection
+    client.switch_database('cluster_info_db')
+    res2 = RGB_L2.runGreenTest(get_info(client))
     return jsonify(res2)
 
 
 @app.route('/result3')
 def result3():
-    res2 = RGB_L3.runGreenTest(clusterInfoFile)
-    return jsonify(res2)
+    client = influx_db.connection
+    client.switch_database('cluster_info_db')
+    res3 = RGB_L3.runGreenTest(get_info(client))
+    return jsonify(res3)
 
 
 @app.route('/')
