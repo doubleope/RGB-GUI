@@ -21,7 +21,7 @@ j(function() {
 
 j(function() {
   j('a#save').bind('click', function() {
-    j.getJSON('/postClusterInfo', {
+    j.getJSON('/post_cluster_info', {
     cluster_name: j('input[name="cluster_name"]').val(),
     cluster_type: j('#type').find('option:selected').text(),
     ip: j('input[name="ip"]').val(),

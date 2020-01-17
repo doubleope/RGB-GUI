@@ -22,8 +22,8 @@ def get_info(client):
     return data_points
 
 
-@app.route('/postClusterInfo')
-def postClusterInfo():
+@app.route('/post_cluster_info')
+def post_cluster_info():
     client = influx_db.connection
     client.switch_database('cluster_info_db')
 
