@@ -10,7 +10,7 @@ function displayClusterInfo(data){
 
 j(function() {
   j('a#process').bind('click', function() {
-    j.getJSON('/getInfo', function(data) {
+    j.getJSON('/show_data_center_info', function(data) {
         displayClusterInfo(data)
       });
       return false;

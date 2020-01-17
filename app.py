@@ -16,6 +16,16 @@ app = Flask(__name__)
 influx_db = InfluxDB(app=app)
 
 
+def get_info(client):
+    if client is None:
+        client = influx_db.connection
+        client.switch_database('cluster_info_db')
+
+    db_data = client.query('SELECT * FROM clusters')
+    data_points = list(db_data.get_points())
+    return data_points
+
+
 @app.route('/postClusterInfo')
 def postClusterInfo():
     client = influx_db.connection
@@ -34,18 +44,14 @@ def postClusterInfo():
         }
     ])
 
-    db_data = client.query('SELECT * FROM clusters')
-    data_points = list(db_data.get_points())
-    return jsonify(data_points)
+    return jsonify(get_info(client))
 
 
-@app.route('/getInfo', methods=['GET'])
-def getInfo():
+@app.route('/show_data_center_info', methods=['GET'])
+def show_data_center_info():
     client = influx_db.connection
     client.switch_database('cluster_info_db')
-    db_data = client.query('SELECT * FROM clusters')
-    data_points = list(db_data.get_points())
-    return jsonify(data_points)
+    return jsonify(get_info(client))
 
 
 @app.route('/result1')
