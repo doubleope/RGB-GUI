@@ -1,21 +1,9 @@
+import json
 from influxdb import InfluxDBClient
+
 client = InfluxDBClient(host='localhost', port=8086)
 
 client.switch_database('cluster_info_db')
-
-
-client.write_points([
-    {
-        "fields": {
-            'cluster_name': 78,
-            'cluster_type': 98,
-            'ip': 56,
-            'port': 4543,
-            'mac_address': 338
-        },
-        "measurement": "clusters"
-    }
-])
 
 dbData = client.query('SELECT * FROM clusters')
 
@@ -24,8 +12,6 @@ for measurement, tags in dbData.keys():
     for p in dbData.get_points(measurement=measurement, tags=tags):
         data_points.append(p)
 
-
-
 dbData_points = list(dbData.get_points())
 final_points = []
 
@@ -33,6 +19,22 @@ for i in dbData_points:
     final_points.append(i)
 
 
+def upload_file():
+    with open('JSON_test_file') as json_file:
+        file = json.load(json_file)
+
+        client.write_points([
+            {
+                "fields": {
+                    'cluster_name': file["cluster_name"],
+                    'cluster_type': file["cluster_type"],
+                    'ip': file["ip"],
+                    'port': file["port"],
+                    'mac_address': file["mac_address"]
+                },
+                "measurement": "clusters"
+            }
+        ])
 
 
-temp = ResultSet({'('clusters', None)': [{'time': '2020-01-03T05:39:42.88922125Z', 'cluster_name': 'Node1'}]})
+upload_file()

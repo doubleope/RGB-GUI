@@ -1,5 +1,6 @@
 import json
 import sys
+import os
 
 from flask_influxdb import InfluxDB
 from flask import Flask, render_template, jsonify, request
@@ -11,9 +12,13 @@ import RGB_L3
 import RGB_Telemetry
 import RGB_Checker
 
-app = Flask(__name__)
+UPLOAD_FOLDER = '/home/ope/PyEMD/Documents/Projects/RGB-GUI/uploads'
 
+app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 influx_db = InfluxDB(app=app)
+
+
 
 
 def get_info(client):
@@ -22,27 +27,27 @@ def get_info(client):
     return data_points
 
 
-@app.route('/upload_file', methods=['GET', 'POST'])
+@app.route('/upload_file')
 def upload_file():
     client = influx_db.connection
     client.switch_database('cluster_info_db')
-    if request.method == 'POST':
-        file = request.files['file']
-        with open('file') as json_file:
-            file = json.load(json_file)
-        for i in file:
-            client.write_points([
+    file = request.args.get('file')
+    file.save(os.path.join(app.config['UPLOAD_FOLDER'], file))
+    with open('uploads/JSON_test_file') as json_file:
+        file = json.load(json_file)
+    client.write_points([
                 {
                     "fields": {
-                        'cluster_name': file[i][0],
-                        'cluster_type': file[i][1],
-                        'ip': file[i][2],
-                        'port': file[i][3],
-                        'mac_address': file[i][4]
+                        'cluster_name': file["cluster_name"],
+                        'cluster_type': file["cluster_type"],
+                        'ip': file["ip"],
+                        'port': file["port"],
+                        'mac_address': file["mac_address"]
                     },
                     "measurement": "clusters"
                 }
             ])
+    return jsonify(get_info(client))
 
 
 

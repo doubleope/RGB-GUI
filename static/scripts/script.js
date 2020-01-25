@@ -17,6 +17,15 @@ j(function() {
     });
   });
 
+  j(function() {
+    j('a#upload').bind('click', function() {
+      j.getJSON('/upload_file', function(data) {
+          displayClusterInfo(data)
+        });
+        return false;
+      });
+    });
+
 
 
 j(function() {

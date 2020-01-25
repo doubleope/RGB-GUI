@@ -1,0 +1,8 @@
+          {
+                    "cluster_name": "in uploads",
+                    "cluster_type": "Head Node",
+                    "ip": "127.0.0.1",
+                    "mac_address": "00:1B:44:11:3A:B7",
+                    "port": "5000",
+                    "time": "2020-01-03T05:39:42.88922125Z"
+          }
