@@ -3,8 +3,8 @@ import sys
 import os
 
 from flask_influxdb import InfluxDB
-from flask import Flask, render_template, jsonify, request
-from werkzeug.utils import secure_filename
+from flask import Flask, render_template, jsonify, request, flash
+from werkzeug.utils import secure_filename, redirect
 
 import RGB_L1
 import RGB_L2
@@ -19,8 +19,6 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 influx_db = InfluxDB(app=app)
 
 
-
-
 def get_info(client):
     db_data = client.query('SELECT * FROM clusters')
     data_points = list(db_data.get_points())
@@ -31,24 +29,22 @@ def get_info(client):
 def upload_file():
     client = influx_db.connection
     client.switch_database('cluster_info_db')
-    file = request.args.get('file')
-    file.save(os.path.join(app.config['UPLOAD_FOLDER'], file))
+
     with open('uploads/JSON_test_file') as json_file:
         file = json.load(json_file)
     client.write_points([
-                {
-                    "fields": {
-                        'cluster_name': file["cluster_name"],
-                        'cluster_type': file["cluster_type"],
-                        'ip': file["ip"],
-                        'port': file["port"],
-                        'mac_address': file["mac_address"]
-                    },
-                    "measurement": "clusters"
-                }
-            ])
+        {
+            "fields": {
+                'cluster_name': file["cluster_name"],
+                'cluster_type': file["cluster_type"],
+                'ip': file["ip"],
+                'port': file["port"],
+                'mac_address': file["mac_address"]
+            },
+            "measurement": "clusters"
+        }
+    ])
     return jsonify(get_info(client))
-
 
 
 @app.route('/post_cluster_info')
@@ -110,18 +106,75 @@ def index():
 
 @app.route('/level1', methods=['GET', 'POST'])
 def level1():
+    if request.method == 'POST':
+        file = request.files['file']
+        client = influx_db.connection
+        client.switch_database('cluster_info_db')
+
+        file = json.load(file)
+        for i in file:
+            client.write_points([
+                {
+                    "fields": {
+                        'cluster_name': i['cluster_name'],
+                        'cluster_type': i['cluster_type'],
+                        'ip': i['ip'],
+                        'port': i['port'],
+                        'mac_address': i['mac_address']
+                    },
+                    "measurement": "clusters"
+                }
+            ])
     level_type = "Level One"
     return render_template('measurement-results-page.html', level_type=level_type)
 
 
 @app.route('/level2')
 def level2():
+    if request.method == 'POST':
+        file = request.files['file']
+        client = influx_db.connection
+        client.switch_database('cluster_info_db')
+
+        file = json.load(file)
+        for i in file:
+            client.write_points([
+                {
+                    "fields": {
+                        'cluster_name': i['cluster_name'],
+                        'cluster_type': i['cluster_type'],
+                        'ip': i['ip'],
+                        'port': i['port'],
+                        'mac_address': i['mac_address']
+                    },
+                    "measurement": "clusters"
+                }
+            ])
     level_type = "Level Two"
     return render_template('measurement-results-page.html', level_type=level_type)
 
 
 @app.route('/level3')
 def level3():
+    if request.method == 'POST':
+        file = request.files['file']
+        client = influx_db.connection
+        client.switch_database('cluster_info_db')
+
+        file = json.load(file)
+        for i in file:
+            client.write_points([
+                {
+                    "fields": {
+                        'cluster_name': i['cluster_name'],
+                        'cluster_type': i['cluster_type'],
+                        'ip': i['ip'],
+                        'port': i['port'],
+                        'mac_address': i['mac_address']
+                    },
+                    "measurement": "clusters"
+                }
+            ])
     level_type = "Level Three"
     return render_template('measurement-results-page.html', level_type=level_type)
 

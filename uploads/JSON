@@ -1,8 +1,8 @@
-          {
-                    "cluster_name": "in uploads",
+	 [{
+                    "cluster_name": "sunday",
                     "cluster_type": "Head Node",
                     "ip": "127.0.0.1",
                     "mac_address": "00:1B:44:11:3A:B7",
                     "port": "5000",
-                    "time": "2020-01-03T05:39:42.88922125Z"
-          }
+                    "time": "2020-01-25T00:23:07.515641609Z"
+          }]
