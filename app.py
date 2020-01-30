@@ -53,7 +53,8 @@ def post_cluster_info():
     client = influx_db.connection
     client.switch_database('cluster_info_db')
     ip_verification = IP(str(request.args.get('ip')))
-    if ip_verification and re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", request.args.get('mac_address').lower()):
+    if ip_verification and re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", request.args.get('mac_address').lower()) and (
+            0 <= int(request.args.get('port')) <= 65535):
         client.write_points([
             {
                 "fields": {
