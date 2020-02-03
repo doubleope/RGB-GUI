@@ -41,9 +41,12 @@ j(function() {
     port: j('input[name="port"]').val(),
     mac_address: j('input[name="mac_address"]').val()
   }, function(data) {
-    if(data == "mac error"){
-      alert("Enter a valid mac address")
-    }else {
+    if(data == "ip error"){
+      alert("Please enter a valid ip address")
+    }else if(data == "mac error"){
+      alert("Please enter a valid mac address")
+    }
+    else {
       displayClusterInfo(data)
     }
   });
