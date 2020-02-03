@@ -52,10 +52,9 @@ def upload_file():
 def post_cluster_info():
     client = influx_db.connection
     client.switch_database('cluster_info_db')
-    ip_verification = IP(str(request.args.get('ip')))
-    if ip_verification and re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$",
-                                    request.args.get('mac_address').lower()) and (
-            0 <= int(request.args.get('port')) <= 65535):
+    mac_verification = re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$",
+                                    request.args.get('mac_address').lower())
+    if mac_verification and (0 <= int(request.args.get('port')) <= 65535):
         client.write_points([
             {
                 "fields": {
@@ -68,7 +67,10 @@ def post_cluster_info():
                 "measurement": "clusters"
             }
         ])
-
+    
+    if not mac_verification:
+        return jsonify("mac error")
+        
     return jsonify(get_info(client))
 
 
@@ -105,7 +107,8 @@ def result3():
 
 @app.route('/')
 def index():
-    return render_template('home.html')
+    flash("you are in the home page")
+    return render_template('home.html')     
 
 
 @app.route('/level1', methods=['GET', 'POST'])
@@ -190,4 +193,6 @@ def level3():
 
 
 if __name__ == '__main__':
+    app.secret_key = 'super secret key'
+    app.config['SESSION_TYPE'] = 'filesystem'
     app.run()

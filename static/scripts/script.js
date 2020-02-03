@@ -30,7 +30,7 @@ function ValidateIPaddress(inputText) {
     return false;
   }
 }
-
+alert("yes")
 
 j(function() {
   j('a#save').bind('click', function() {
@@ -41,7 +41,11 @@ j(function() {
     port: j('input[name="port"]').val(),
     mac_address: j('input[name="mac_address"]').val()
   }, function(data) {
-    displayClusterInfo(data)
+    if(data == "mac error"){
+      alert("Enter a valid mac address")
+    }else {
+      displayClusterInfo(data)
+    }
   });
   return false;
   });

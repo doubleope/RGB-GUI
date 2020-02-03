@@ -1,0 +1,10 @@
+[
+	{
+                    "cluster_name": "Ruby",
+                    "cluster_type": "PDU",
+                    "ip": "120.0.0.100",
+                    "mac_address": "00:0a:83:b1:c0:8e",
+                    "port": "1283",
+                    "time": "2020-01-30T22:30:50.254290113Z"
+          }
+]
