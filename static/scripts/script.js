@@ -45,8 +45,9 @@ j(function() {
       alert("Please enter a valid ip address")
     }else if(data == "mac error"){
       alert("Please enter a valid mac address")
-    }
-    else {
+    }else if(data == "port error"){
+      alert("Please enter a valid port number")
+    }else {
       displayClusterInfo(data)
     }
   });

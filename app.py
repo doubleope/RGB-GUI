@@ -52,11 +52,14 @@ def upload_file():
 def post_cluster_info():
     client = influx_db.connection
     client.switch_database('cluster_info_db')
+
     ip_verification = re.match("^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$", request.args.get('ip'))
     mac_verification = re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$",
                                     request.args.get('mac_address').lower())
+    port_verification = re.match("^([1-9][0-9]{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$", request.args.get('port'))
+    
 
-    if ip_verification and mac_verification and (0 <= int(request.args.get('port')) <= 65535):
+    if ip_verification and mac_verification and port_verification:
         client.write_points([
             {
                 "fields": {
@@ -74,6 +77,9 @@ def post_cluster_info():
 
     if not mac_verification:
         return jsonify("mac error")
+
+    if not port_verification:
+        return jsonify("port error")
         
     return jsonify(get_info(client))
 
