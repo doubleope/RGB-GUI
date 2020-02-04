@@ -36,8 +36,8 @@ def upload_file():
     client.write_points([
         {
             "fields": {
-                'cluster_name': file["cluster_name"],
-                'cluster_type': file["cluster_type"],
+                'device_name': file["device_name"],
+                'device_type': file["device_type"],
                 'ip': file["ip"],
                 'port': file["port"],
                 'mac_address': file["mac_address"]
@@ -63,8 +63,8 @@ def post_cluster_info():
         client.write_points([
             {
                 "fields": {
-                    'cluster_name': request.args.get('cluster_name'),
-                    'cluster_type': request.args.get('cluster_type'),
+                    'device_name': request.args.get('device_name'),
+                    'device_type': request.args.get('device_type'),
                     'ip': request.args.get('ip'),
                     'port': request.args.get('port'),
                     'mac_address': request.args.get('mac_address')
@@ -135,8 +135,8 @@ def level1():
                     client.write_points([
                         {
                             "fields": {
-                                'cluster_name': i['cluster_name'],
-                                'cluster_type': i['cluster_type'],
+                                'device_name': i['device_name'],
+                                'device_type': i['device_type'],
                                 'ip': i['ip'],
                                 'port': i['port'],
                                 'mac_address': i['mac_address']
@@ -162,8 +162,8 @@ def level2():
                     client.write_points([
                         {
                             "fields": {
-                                'cluster_name': i['cluster_name'],
-                                'cluster_type': i['cluster_type'],
+                                'device_name': i['device_name'],
+                                'device_type': i['device_type'],
                                 'ip': i['ip'],
                                 'port': i['port'],
                                 'mac_address': i['mac_address']
@@ -189,8 +189,8 @@ def level3():
                     client.write_points([
                         {
                             "fields": {
-                                'cluster_name': i['cluster_name'],
-                                'cluster_type': i['cluster_type'],
+                                'device_name': i['device_name'],
+                                'device_type': i['device_type'],
                                 'ip': i['ip'],
                                 'port': i['port'],
                                 'mac_address': i['mac_address']
