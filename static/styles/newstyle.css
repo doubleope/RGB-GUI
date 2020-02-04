@@ -34,3 +34,7 @@ pre {
 label {
   font-size: 1.5rem;
 }
+
+.alert {
+  display: none;
+}

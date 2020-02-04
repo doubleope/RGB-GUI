@@ -1,5 +1,6 @@
 var j = jQuery_1_4_2
 
+
 function displayClusterInfo(data){
   j("#result").text(JSON.stringify(data, undefined, 10));
         j(document).ready(function() {
@@ -30,7 +31,7 @@ function ValidateIPaddress(inputText) {
     return false;
   }
 }
-alert("yes")
+
 
 j(function() {
   j('a#save').bind('click', function() {
@@ -48,6 +49,8 @@ j(function() {
     }else if(data == "port error"){
       alert("Please enter a valid port number")
     }else {
+      $("#alert").css("display", "block");
+      setTimeout("$('#alert').css('display', 'none');", 2000)
       displayClusterInfo(data)
     }
   });
