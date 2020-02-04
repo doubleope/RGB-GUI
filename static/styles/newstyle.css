@@ -22,6 +22,8 @@ pre {
 
 .instructional-headings {
   font-size: 1.5rem;
+  color: rgb(85, 30, 64);
+  margin-bottom: 0;
 }
 
 #file {
@@ -37,4 +39,9 @@ label {
 
 .alert {
   display: none;
+  margin-top: 1rem;
+}
+
+#upload-form {
+  padding-top: 0.5rem;
 }

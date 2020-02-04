@@ -51,7 +51,6 @@ j(function() {
     }else {
       $("#alert").css("display", "block");
       setTimeout("$('#alert').css('display', 'none');", 2000)
-      displayClusterInfo(data)
     }
   });
   return false;
