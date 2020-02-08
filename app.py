@@ -13,10 +13,8 @@ import RGB_L3
 import RGB_Telemetry
 import RGB_Checker
 
-UPLOAD_FOLDER = '/home/ope/PyEMD/Documents/Projects/RGB-GUI/uploads'
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 influx_db = InfluxDB(app=app)
 
 
