@@ -115,7 +115,6 @@ def result3():
 
 @app.route('/')
 def index():
-    flash("you are in the home page")
     return render_template('home.html')     
 
 
@@ -145,5 +144,4 @@ def level3():
 
 if __name__ == '__main__':
     app.secret_key = 'super secret key'
-    app.config['SESSION_TYPE'] = 'filesystem'
     app.run()
