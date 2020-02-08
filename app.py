@@ -129,7 +129,7 @@ def level1():
     return render_template('measurement-results-page.html', level_type=level_type)
 
 
-@app.route('/level2')
+@app.route('/level2', methods=['GET', 'POST'])
 def level2():
     if request.method == 'POST':
         upload_file()
@@ -137,7 +137,7 @@ def level2():
     return render_template('measurement-results-page.html', level_type=level_type)
 
 
-@app.route('/level3')
+@app.route('/level3', methods=['GET', 'POST'])
 def level3():
     if request.method == 'POST':
         upload_file()
