@@ -1,34 +1,10 @@
 [
           {
-                    "cluster_name": "in uploads",
-                    "cluster_type": "Head Node",
-                    "ip": "127.0.0.1",
-                    "mac_address": "00:1B:44:11:3A:B7",
-                    "port": "5000",
-                    "time": "2020-01-26T20:47:07.378093975Z"
-          },
-          {
-                    "cluster_name": "changed",
-                    "cluster_type": "Head Node",
-                    "ip": "127.0.0.1",
-                    "mac_address": "00:1B:44:11:3A:B7",
-                    "port": "5000",
-                    "time": "2020-01-26T20:57:47.873933789Z"
-          },
-          {
-                    "cluster_name": "Node7",
-                    "cluster_type": "Head Node",
-                    "ip": "127.0.0.1",
-                    "mac_address": "00:1B:44:11:3A:B7",
-                    "port": "5000",
-                    "time": "2020-01-26T20:59:38.08235381Z"
-          },
-          {
-                    "cluster_name": "name",
-                    "cluster_type": "Compute-node",
-                    "ip": "127.0.1.0",
-                    "mac_address": "00:0a:83:b1:c0:8e",
-                    "port": "2345",
-                    "time": "2020-01-30T21:42:05.333224378Z"
+                    "device_name": "device name",
+                    "device_type": "Compute-node",
+                    "ip": "1.1.1.1",
+                    "mac_address": "00:0a:95:9d:68:16",
+                    "port": "1",
+                    "time": "2020-02-08T05:01:23.512716903Z"
           }
 ]

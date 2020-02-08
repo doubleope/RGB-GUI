@@ -26,27 +26,27 @@ def get_info(client):
     return data_points
 
 
-@app.route('/upload_file')
 def upload_file():
-    client = influx_db.connection
-    client.switch_database('cluster_info_db')
+    if request.files['file'] or request.args.get('ip'):
+            file = request.files['file']
+            if file:
+                client = influx_db.connection
+                client.switch_database('cluster_info_db')
 
-    with open('uploads/JSON_test_file') as json_file:
-        file = json.load(json_file)
-    client.write_points([
-        {
-            "fields": {
-                'device_name': file["device_name"],
-                'device_type': file["device_type"],
-                'ip': file["ip"],
-                'port': file["port"],
-                'mac_address': file["mac_address"]
-            },
-            "measurement": "clusters"
-        }
-    ])
-    return jsonify(get_info(client))
-
+                file = json.load(file)
+                for i in file:
+                    client.write_points([
+                        {
+                            "fields": {
+                                'device_name': i['device_name'],
+                                'device_type': i['device_type'],
+                                'ip': i['ip'],
+                                'port': i['port'],
+                                'mac_address': i['mac_address']
+                            },
+                            "measurement": "clusters"
+                        }
+                    ])
 
 @app.route('/post_cluster_info')
 def post_cluster_info():
@@ -124,26 +124,7 @@ def index():
 @app.route('/level1', methods=['GET', 'POST'])
 def level1():
     if request.method == 'POST':
-        if request.files['file'] or request.args.get('ip'):
-            file = request.files['file']
-            if file:
-                client = influx_db.connection
-                client.switch_database('cluster_info_db')
-
-                file = json.load(file)
-                for i in file:
-                    client.write_points([
-                        {
-                            "fields": {
-                                'device_name': i['device_name'],
-                                'device_type': i['device_type'],
-                                'ip': i['ip'],
-                                'port': i['port'],
-                                'mac_address': i['mac_address']
-                            },
-                            "measurement": "clusters"
-                        }
-                    ])
+        upload_file()
     level_type = "Level One"
     return render_template('measurement-results-page.html', level_type=level_type)
 
@@ -151,26 +132,7 @@ def level1():
 @app.route('/level2')
 def level2():
     if request.method == 'POST':
-        if request.files['file'] or request.args.get('ip'):
-            file = request.files['file']
-            if file:
-                client = influx_db.connection
-                client.switch_database('cluster_info_db')
-
-                file = json.load(file)
-                for i in file:
-                    client.write_points([
-                        {
-                            "fields": {
-                                'device_name': i['device_name'],
-                                'device_type': i['device_type'],
-                                'ip': i['ip'],
-                                'port': i['port'],
-                                'mac_address': i['mac_address']
-                            },
-                            "measurement": "clusters"
-                        }
-                    ])
+        upload_file()
     level_type = "Level One"
     return render_template('measurement-results-page.html', level_type=level_type)
 
@@ -178,26 +140,7 @@ def level2():
 @app.route('/level3')
 def level3():
     if request.method == 'POST':
-        if request.files['file'] or request.args.get('ip'):
-            file = request.files['file']
-            if file:
-                client = influx_db.connection
-                client.switch_database('cluster_info_db')
-
-                file = json.load(file)
-                for i in file:
-                    client.write_points([
-                        {
-                            "fields": {
-                                'device_name': i['device_name'],
-                                'device_type': i['device_type'],
-                                'ip': i['ip'],
-                                'port': i['port'],
-                                'mac_address': i['mac_address']
-                            },
-                            "measurement": "clusters"
-                        }
-                    ])
+        upload_file()
     level_type = "Level One"
     return render_template('measurement-results-page.html', level_type=level_type)
 
