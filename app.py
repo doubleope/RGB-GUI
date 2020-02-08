@@ -133,7 +133,7 @@ def level1():
 def level2():
     if request.method == 'POST':
         upload_file()
-    level_type = "Level One"
+    level_type = "Level Two"
     return render_template('measurement-results-page.html', level_type=level_type)
 
 
@@ -141,7 +141,7 @@ def level2():
 def level3():
     if request.method == 'POST':
         upload_file()
-    level_type = "Level One"
+    level_type = "Level Three"
     return render_template('measurement-results-page.html', level_type=level_type)
 
 
