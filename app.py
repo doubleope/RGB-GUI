@@ -17,7 +17,7 @@ import RGB_Checker
 app = Flask(__name__)
 influx_db = InfluxDB(app=app)
 
-
+# method to get info database
 def get_info(client):
     db_data = client.query('SELECT * FROM clusters')
     data_points = list(db_data.get_points())
