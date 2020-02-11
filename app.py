@@ -13,9 +13,9 @@ import RGB_L3
 import RGB_Telemetry
 import RGB_Checker
 
-
 app = Flask(__name__)
 influx_db = InfluxDB(app=app)
+
 
 # method to get info database
 def get_info(client):
@@ -24,38 +24,45 @@ def get_info(client):
     return data_points
 
 
+# method that handles file upload
 def upload_file():
     if request.files['file'] or request.args.get('ip'):
-            file = request.files['file']
-            if file:
-                client = influx_db.connection
-                client.switch_database('cluster_info_db')
+        file = request.files['file']
+        if file:
+            client = influx_db.connection
+            client.switch_database('cluster_info_db')
 
-                file = json.load(file)
-                for i in file:
-                    client.write_points([
-                        {
-                            "fields": {
-                                'device_name': i['device_name'],
-                                'device_type': i['device_type'],
-                                'ip': i['ip'],
-                                'port': i['port'],
-                                'mac_address': i['mac_address']
-                            },
-                            "measurement": "clusters"
-                        }
-                    ])
+            file = json.load(file)
+            for i in file:
+                client.write_points([
+                    {
+                        "fields": {
+                            'device_name': i['device_name'],
+                            'device_type': i['device_type'],
+                            'ip': i['ip'],
+                            'port': i['port'],
+                            'mac_address': i['mac_address']
+                        },
+                        "measurement": "clusters"
+                    }
+                ])
 
+
+# method that handles getting info from form fields and writing into database
 @app.route('/post_cluster_info')
 def post_cluster_info():
     client = influx_db.connection
     client.switch_database('cluster_info_db')
 
-    ip_verification = re.match("^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$", request.args.get('ip'))
+    ip_verification = re.match(
+        "^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\
+        .(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$",
+        request.args.get('ip'))
     mac_verification = re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$",
-                                    request.args.get('mac_address').lower())
-    port_verification = re.match("^([1-9][0-9]{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$", request.args.get('port'))
-    
+                                request.args.get('mac_address').lower())
+    port_verification = re.match(
+        "^([1-9][0-9]{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$",
+        request.args.get('port'))
 
     if ip_verification and mac_verification and port_verification:
         client.write_points([
@@ -78,7 +85,7 @@ def post_cluster_info():
 
     if not port_verification:
         return jsonify("port error")
-        
+
     return jsonify(get_info(client))
 
 
@@ -115,7 +122,7 @@ def result3():
 
 @app.route('/')
 def index():
-    return render_template('home.html')     
+    return render_template('home.html')
 
 
 @app.route('/level1', methods=['GET', 'POST'])
@@ -143,5 +150,5 @@ def level3():
 
 
 if __name__ == '__main__':
-    app.secret_key = 'super secret key'
+    app.secret_key = 'this key is so secret'
     app.run()
