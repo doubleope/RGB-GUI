@@ -3,3 +3,7 @@
     background-image: url('data-center.jpg');
     height: 100vh;
 }
+
+#welcome-text {
+    background: white;
+}
