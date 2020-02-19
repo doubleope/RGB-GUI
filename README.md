@@ -1,6 +1,10 @@
 # RGBGUI
 
-https://docs.influxdata.com/influxdb/v1.7/introduction/installation/
+# How to run:
 
+The following works on CentOS 7:
 
-python3 -m pip install Flask-InfluxDB
+1. Clone the repository
+2. sudo yum install docker
+3. sudo systemctl start docker
+4. sudo docker build -t rgb-app:latest .
