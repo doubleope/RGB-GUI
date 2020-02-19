@@ -151,4 +151,4 @@ def level3():
 
 if __name__ == '__main__':
     app.secret_key = 'this key is so secret'
-    app.run()
+    app.run(debug=True, host='0.0.0.0')
